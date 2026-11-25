@@ -1,0 +1,68 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>System Design - DeepStack</title>
+<meta name="theme-color" content="#0a0e1a"><link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon-192.png"><link rel="stylesheet" href="css/styles.css">
+<style>:root{--g1:var(--sd1);--g2:var(--sd2)}
+.flow{flex-direction:column;gap:6px}
+.tier{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;align-items:center}
+.arrow{transform:rotate(90deg);margin:0 auto}
+.node.off{display:none}
+.usern{font-size:13px;font-weight:800;color:var(--sd1);text-align:center}
+</style>
+</head><body>
+<header class="top"><div class="topin">
+  <a class="brand" href="index.html"><span class="logo">◧</span>DeepStack</a><div class="sp"></div>
+  <a class="pillbtn" href="index.html">← All tracks</a>
+</div></header>
+<main class="wrap">
+  <section class="hero"><h1>⛁ System <span class="g">Design</span></h1>
+  <p>Nobody learns scaling from a diagram of Netflix. You learn it by watching one app break, ten users at a time - and fixing it. Press the button.</p></section>
+
+  <div class="st"><h2>Scale the app</h2><span class="hint">each tap multiplies users by 10x or more</span><div class="line"></div></div>
+  <div class="panel">
+    <h3>🚀 From side project to planet scale</h3>
+    <div class="sub">Your startup just launched. Keep tapping as users pour in, and watch the architecture grow the parts it needs - each one appears exactly when the pain does.</div>
+    <div class="stage">
+      <div class="usern" id="usern">100 users</div>
+      <div class="flow" id="scaleflow">
+        <div class="tier"><div class="node on" id="n-users">👥 Users</div></div>
+        <div class="arrow on">↓</div>
+        <div class="tier"><div class="node off" id="n-lb">⚖️ Load balancer</div><div class="node on" id="n-app">🖥 App server</div></div>
+        <div class="arrow on">↓</div>
+        <div class="tier"><div class="node off" id="n-cache">⚡ Cache</div><div class="node on" id="n-db">🗄 Database</div><div class="node off" id="n-repl">📚 Replicas</div></div>
+        <div class="arrow off" id="a-q">↓</div>
+        <div class="tier"><div class="node off" id="n-queue">📮 Queue</div><div class="node off" id="n-work">👷 Workers</div><div class="node off" id="n-cdn">🌍 CDN</div></div>
+      </div>
+    </div>
+    <div class="caption" id="scalecap">One server, one database. It fits in your head because it fits on one machine. Enjoy it while it lasts.</div>
+    <div class="ctr"><button class="btn" id="scalebtn">📈 10x the users</button><button class="btn ghost" id="scalereset">↺ Back to 100</button></div>
+  </div>
+
+  <div class="st"><h2>The building blocks</h2><span class="hint">six parts do most of the work</span><div class="line"></div></div>
+  <div class="grid" id="blocks"></div>
+
+  <div class="st"><h2>Real-world walkthroughs</h2><span class="hint">pick an app, step through the request</span><div class="line"></div></div>
+  <div class="panel">
+    <div class="chips" id="scen">
+      <button class="chip on" data-s="wa">💬 WhatsApp message</button>
+      <button class="chip" data-s="url">🔗 URL shortener</button>
+      <button class="chip" data-s="food">🛵 Food delivery</button>
+    </div>
+    <h3 id="sctitle" style="margin-top:10px">One message's journey</h3>
+    <div class="stage"><div class="flow" id="scflow"></div></div>
+    <div class="caption" id="sccap"></div>
+    <div class="ctr"><button class="btn" id="scnext">Next step →</button><button class="btn ghost" id="screset">↺ Replay</button></div>
+  </div>
+
+  <div class="st"><h2>Quick check</h2><span class="hint">five questions</span><div class="line"></div></div>
+  <div class="panel"><div id="quiz"></div></div>
+
+  <div class="st"><h2>Critical questions</h2><span class="hint">asked in interviews, useful at work</span><div class="line"></div></div>
+  <div id="faqs"></div>
+
+  <div class="footer">DeepStack · System design track · progress saves on this device</div>
+</main>
+<script src="js/app.js"></script>
+<script src="js/sd.js"></script>
+</body></html>

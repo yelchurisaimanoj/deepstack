@@ -1,0 +1,46 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>DSA & Problem Solving - DeepStack</title>
+<meta name="theme-color" content="#0a0e1a"><link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon-192.png"><link rel="stylesheet" href="css/styles.css">
+<style>:root{--g1:var(--dsa1);--g2:var(--dsa2)}</style>
+</head><body>
+<header class="top"><div class="topin">
+  <a class="brand" href="index.html"><span class="logo">◧</span>DeepStack</a><div class="sp"></div>
+  <a class="pillbtn" href="index.html">← All tracks</a>
+</div></header>
+<main class="wrap">
+  <section class="hero"><h1>⟠ DSA & <span class="g">Problem Solving</span></h1>
+  <p>Stop memorizing solutions. Learn the dozen patterns underneath them, and train the radar that spots which one a problem is wearing.</p></section>
+
+  <div class="st"><h2>The mindset</h2><span class="hint">flip each card</span><div class="line"></div></div>
+  <div class="grid" id="mindset"></div>
+
+  <div class="st"><h2>Watch the patterns move</h2><span class="hint">press play</span><div class="line"></div></div>
+  <div class="panel">
+    <h3 id="ptitle">Sliding window</h3>
+    <div class="sub" id="psub">A window slides over the array; only its edges move. Each element enters once and leaves once - O(n), not O(n²).</div>
+    <div class="stage"><div class="bars" id="bars"></div></div>
+    <div class="caption" id="pcap"></div>
+    <div class="ctr">
+      <button class="btn" id="pplay">▶ Play</button>
+      <button class="btn ghost" data-pat="window">Sliding window</button>
+      <button class="btn ghost" data-pat="twoptr">Two pointers</button>
+      <button class="btn ghost" data-pat="bsearch">Binary search</button>
+    </div>
+  </div>
+
+  <div class="st"><h2>The pattern wardrobe</h2><span class="hint">six costumes cover most rooms</span><div class="line"></div></div>
+  <div class="grid" id="patterns"></div>
+
+  <div class="st"><h2>Pattern radar</h2><span class="hint">read the hint, name the pattern</span><div class="line"></div></div>
+  <div class="panel"><div id="quiz"></div></div>
+
+  <div class="st"><h2>Critical questions</h2><span class="hint">asked in interviews, useful at work</span><div class="line"></div></div>
+  <div id="faqs"></div>
+
+  <div class="footer">DeepStack · DSA track · progress saves on this device</div>
+</main>
+<script src="js/app.js"></script>
+<script src="js/dsa.js"></script>
+</body></html>

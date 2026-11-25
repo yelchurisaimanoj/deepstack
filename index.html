@@ -1,0 +1,74 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>DeepStack - grow past senior, visually</title>
+<meta name="description" content="A visual, minimal-text companion for senior software engineers: DSA patterns, low-level design, system design, AI engineering and the tools that matter.">
+<meta name="theme-color" content="#0a0e1a">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<link rel="stylesheet" href="css/styles.css">
+</head><body>
+<svg width="0" height="0"><defs><linearGradient id="grad" x1="0" y1="0" x2="1" y2="1">
+<stop offset="0" stop-color="#22d3ee"/><stop offset="1" stop-color="#c084fc"/></linearGradient></defs></svg>
+<header class="top"><div class="topin">
+  <div class="brand"><span class="logo">◧</span>DeepStack</div>
+  <div class="sp"></div>
+  <button class="pillbtn" id="installbtn">Install app</button>
+</div></header>
+<main class="wrap">
+  <section class="hero">
+    <h1>Grow past <span class="g">senior</span>,<br>without the wall of text.</h1>
+    <p>Deep concepts, shown not told. Patterns, designs and systems you can tap through - for interviews and for the work you do every day.</p>
+    <div class="badges"><span class="badge">5 tracks</span><span class="badge">Minimal text</span><span class="badge">Interactive</span><span class="badge">Offline</span></div>
+  </section>
+
+  <div class="deepbanner" id="dailypick" style="background:linear-gradient(120deg,rgba(250,204,21,.12),rgba(251,113,133,.10))"></div>
+
+  <div class="deepbanner" id="idea">
+    <div class="k">Deep idea of the day</div>
+    <div class="v" id="ideaV"></div>
+    <div class="s" id="ideaS"></div>
+  </div>
+
+  <div class="st"><h2>Tracks</h2><span class="hint">tap a track, flip cards, watch ideas move</span><div class="line"></div></div>
+  <div class="tracks" id="tracks"></div>
+
+  <div class="footer">DeepStack · made for engineers who would rather see than read · works offline, your progress stays on this device</div>
+</main>
+<script src="js/app.js"></script>
+<script src="js/daily.js"></script>
+<script>
+const TRACKS=[
+ {p:'dsa.html',k:'dsa',n:17,g:['#22d3ee','#818cf8'],i:'⟠',t:'DSA & Problem Solving',d:'Pattern radar: see the pattern before you code'},
+ {p:'lld.html',k:'lld',n:18,g:['#fbbf24','#f472b6'],i:'▣',t:'LLD & Design Patterns',d:'SOLID and patterns as stories you can touch'},
+ {p:'sd.html',k:'sd',n:17,g:['#34d399','#22d3ee'],i:'⛁',t:'System Design',d:'Scale real apps from 100 users to 100 million'},
+ {p:'ai.html',k:'ai',n:20,g:['#c084fc','#f472b6'],i:'✦',t:'AI & Forward Engineering',d:'LLMs, RAG, agents - and the engineers who ship them'},
+ {p:'tools.html',k:'tools',n:19,g:['#facc15','#fb7185'],i:'⚒',t:'Tools Radar',d:'The modern toolbox, filtered to what matters'}
+];
+document.getElementById('tracks').innerHTML=TRACKS.map(t=>`
+ <a class="tcard" style="--g1:${t.g[0]};--g2:${t.g[1]}" href="${t.p}">
+   <span class="glyph">${t.i}</span>
+   <span><span class="tt">${t.t}</span><div class="ds">${t.d}</div></span>
+   <span class="meta"><span class="ringwrap" data-page="${t.k}" data-total="${t.n}">
+     <svg class="ring" viewBox="0 0 46 46"><circle class="bgc" cx="23" cy="23" r="19"/><circle class="fgc" cx="23" cy="23" r="19"/></svg>
+     <span class="pct">0%</span></span><div class="go">open →</div></span>
+ </a>`).join('');
+
+const IDEAS=[
+ ['Names are the cheapest design tool','If you cannot name a function crisply, you do not yet know what it does. Rename until the code explains itself.'],
+ ['Every system is a cache of a slower truth','Database caches, CDNs, memoization, even your own mental models. Ask: what truth is this caching, and how stale can it be?'],
+ ['Complexity cannot be deleted, only moved','Good design chooses where complexity lives: in one well-tested module, not smeared across forty call sites.'],
+ ['Big-O is about what you can ignore','Constants die at scale. So do extra passes. Ask what grows, and keep only that.'],
+ ['A queue is a shock absorber','Traffic spikes are physics. Queues convert bursts your system cannot survive into a rate it can.'],
+ ['The pattern finds you','Interview problems are old friends in costume. Sort the costumes into a dozen wardrobes and most rooms become familiar.'],
+ ['Write code for the reader at 2 AM','That reader is future you, on call, tired. Cleverness is a debt they must repay with interest.'],
+ ['Interfaces are promises','A small, honest interface beats a large, hopeful one. Every method you expose is a promise you must keep.'],
+ ['Measure, then optimize','A profiler answer beats an hour of intuition. Bottlenecks hide where you are not looking.'],
+ ['Agents are loops, not magic','An LLM agent is observe, think, act, repeat. Design the loop and the tools; the intelligence comes with the model.'],
+ ['Fallbacks are features','Every dependency fails eventually. Systems that degrade gracefully look like genius on incident day.'],
+ ['Small batches, fast feedback','The same idea behind sliding windows, CI pipelines and weekly releases: shrink the batch, learn sooner.']
+];
+const d=new Date(); const pick=IDEAS[(d.getFullYear()*372+d.getMonth()*31+d.getDate())%IDEAS.length];
+ideaV.textContent=pick[0]; ideaS.textContent=pick[1];
+</script>
+</body></html>

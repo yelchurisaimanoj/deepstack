@@ -1,0 +1,57 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>AI & Forward Engineering - DeepStack</title>
+<meta name="theme-color" content="#0a0e1a"><link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon-192.png"><link rel="stylesheet" href="css/styles.css">
+<style>:root{--g1:var(--ai1);--g2:var(--ai2)}
+.ctxbar{height:12px;border-radius:99px;background:var(--card2);overflow:hidden;margin-top:10px}
+.ctxfill{height:100%;width:0;background:linear-gradient(90deg,var(--ai1),var(--ai2));transition:width .3s;border-radius:99px}
+.tokin{width:100%;background:#0b1122;border:1px solid var(--line);border-radius:12px;color:var(--ink);padding:11px 13px;font:inherit;font-size:14px}
+</style>
+</head><body>
+<header class="top"><div class="topin">
+  <a class="brand" href="index.html"><span class="logo">◧</span>DeepStack</a><div class="sp"></div>
+  <a class="pillbtn" href="index.html">← All tracks</a>
+</div></header>
+<main class="wrap">
+  <section class="hero"><h1>✦ AI & <span class="g">Forward Engineering</span></h1>
+  <p>The senior engineer's job is changing shape, not disappearing. See how LLMs actually work, then learn the discipline of shipping them where the customer lives.</p></section>
+
+  <div class="st"><h2>How LLMs actually work</h2><span class="hint">flip each card</span><div class="line"></div></div>
+  <div class="grid" id="concepts"></div>
+
+  <div class="st"><h2>Feel it: tokens & context</h2><span class="hint">type anything</span><div class="line"></div></div>
+  <div class="panel">
+    <h3>🧱 The model never sees words - it sees tokens</h3>
+    <div class="sub">Type below. Watch your text shatter into tokens, and watch the context window fill. Everything the model knows about your conversation lives inside that window.</div>
+    <div class="stage">
+      <input class="tokin" id="tokin" value="Ship the fix before Friday" placeholder="Type something...">
+      <div class="tokout" id="tokout" style="margin-top:12px"></div>
+      <div class="ctxbar"><div class="ctxfill" id="ctxfill"></div></div>
+      <div style="font-size:12px;color:var(--dim);margin-top:6px" id="ctxlabel"></div>
+    </div>
+  </div>
+
+  <div class="st"><h2>Feel it: RAG, step by step</h2><span class="hint">the pattern behind "chat with your docs"</span><div class="line"></div></div>
+  <div class="panel">
+    <h3>📚 Retrieval-Augmented Generation</h3>
+    <div class="sub">Why "chat with your PDF" products are not magic: they look things up before answering. Step through one question.</div>
+    <div class="stage"><div class="flow" id="ragflow"></div></div>
+    <div class="caption" id="ragcap"></div>
+    <div class="ctr"><button class="btn" id="ragnext">Next step →</button><button class="btn ghost" id="ragreset">↺ Replay</button></div>
+  </div>
+
+  <div class="st"><h2>Forward-deployed engineering</h2><span class="hint">the role AI companies hire hardest</span><div class="line"></div></div>
+  <div class="grid" id="fde"></div>
+
+  <div class="st"><h2>Quick check</h2><span class="hint">five questions</span><div class="line"></div></div>
+  <div class="panel"><div id="quiz"></div></div>
+
+  <div class="st"><h2>Critical questions</h2><span class="hint">asked in interviews, useful at work</span><div class="line"></div></div>
+  <div id="faqs"></div>
+
+  <div class="footer">DeepStack · AI track · progress saves on this device</div>
+</main>
+<script src="js/app.js"></script>
+<script src="js/ai.js"></script>
+</body></html>

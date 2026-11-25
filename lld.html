@@ -1,0 +1,85 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>LLD & Design Patterns - DeepStack</title>
+<meta name="theme-color" content="#0a0e1a"><link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon-192.png"><link rel="stylesheet" href="css/styles.css">
+<style>:root{--g1:var(--lld1);--g2:var(--lld2)}
+.cup{width:120px;margin:6px auto 0}
+.cup .layer{height:18px;border-radius:6px;margin-top:4px;transition:all .3s;opacity:0;transform:scaleX(.7)}
+.cup .layer.on{opacity:1;transform:scaleX(1)}
+.sub-chip{background:var(--card2);border:1px solid var(--line);border-radius:99px;padding:8px 12px;font-size:12.5px;font-weight:700;transition:all .25s}
+.sub-chip.buzz{border-color:#fbbf24;background:rgba(251,191,36,.15);transform:scale(1.06)}
+.sub-chip.off{opacity:.35;text-decoration:line-through}
+</style>
+</head><body>
+<header class="top"><div class="topin">
+  <a class="brand" href="index.html"><span class="logo">◧</span>DeepStack</a><div class="sp"></div>
+  <a class="pillbtn" href="index.html">← All tracks</a>
+</div></header>
+<main class="wrap">
+  <section class="hero"><h1>▣ LLD & <span class="g">Design Patterns</span></h1>
+  <p>Patterns are not trivia to recite. They are stories about objects that cooperate. Here you do not read them - you play with them.</p></section>
+
+  <div class="st"><h2>SOLID, as five tiny stories</h2><span class="hint">flip each card</span><div class="line"></div></div>
+  <div class="grid" id="solid"></div>
+
+  <div class="st"><h2>Play with the patterns</h2><span class="hint">three live demos</span><div class="line"></div></div>
+
+  <div class="panel">
+    <h3>🔔 Observer - "the channel that notifies"</h3>
+    <div class="sub">One subject, many subscribers. New video drops; everyone on the list hears about it. Unsubscribed? No noise.</div>
+    <div class="stage">
+      <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center" id="subs"></div>
+    </div>
+    <div class="caption" id="obscap">Tap a subscriber to unsubscribe / resubscribe. Then drop a video.</div>
+    <div class="ctr"><button class="btn" id="dropvid">📹 Drop a new video</button></div>
+  </div>
+
+  <div class="panel">
+    <h3>🧩 Strategy - "swap the behavior, keep the code"</h3>
+    <div class="sub">Checkout does not care how you pay. It holds a payment strategy; you swap it at runtime.</div>
+    <div class="stage" style="text-align:center">
+      <div class="chips" style="justify-content:center" id="strats">
+        <button class="chip on" data-s="upi">UPI</button>
+        <button class="chip" data-s="card">Card</button>
+        <button class="chip" data-s="cod">Cash on delivery</button>
+      </div>
+      <div class="tokout" id="stratout" style="margin-top:8px;color:var(--dim);font-size:13.5px">checkout.pay(499) → opens UPI intent, verifies in 2s, done. No if-else jungle inside checkout.</div>
+    </div>
+    <div class="ctr"><button class="btn" id="paybtn">Pay ₹499</button></div>
+  </div>
+
+  <div class="panel">
+    <h3>☕ Decorator - "wrap it, don't subclass it"</h3>
+    <div class="sub">Each topping wraps the coffee and adds its own cost and name. Combinations explode; classes do not.</div>
+    <div class="stage">
+      <div class="cup">
+        <div class="layer" id="l-whip" style="background:#fef3c7"></div>
+        <div class="layer" id="l-soy" style="background:#fde68a"></div>
+        <div class="layer" id="l-mocha" style="background:#b45309"></div>
+        <div class="layer on" style="background:#78350f;height:34px"></div>
+      </div>
+      <div class="tokout" style="text-align:center;margin-top:10px"><span id="decname">Coffee</span> · <b id="decprice">₹50</b></div>
+    </div>
+    <div class="ctr" style="justify-content:center">
+      <button class="btn ghost" data-t="mocha">+ Mocha ₹30</button>
+      <button class="btn ghost" data-t="soy">+ Soy ₹15</button>
+      <button class="btn ghost" data-t="whip">+ Whip ₹20</button>
+      <button class="btn" id="decreset">↺ Fresh cup</button>
+    </div>
+  </div>
+
+  <div class="st"><h2>The pattern deck</h2><span class="hint">the classics, minus the textbook</span><div class="line"></div></div>
+  <div class="grid" id="deck"></div>
+
+  <div class="st"><h2>Spot the pattern</h2><span class="hint">six quick reads</span><div class="line"></div></div>
+  <div class="panel"><div id="quiz"></div></div>
+
+  <div class="st"><h2>Critical questions</h2><span class="hint">asked in interviews, useful at work</span><div class="line"></div></div>
+  <div id="faqs"></div>
+
+  <div class="footer">DeepStack · LLD track · progress saves on this device</div>
+</main>
+<script src="js/app.js"></script>
+<script src="js/lld.js"></script>
+</body></html>
