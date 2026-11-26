@@ -1,6 +1,6 @@
-const CACHE='deepstack-v4';
+const CACHE='deepstack-v5';
 const ASSETS=['./','index.html','dsa.html','lld.html','sd.html','ai.html','tools.html','concurrency.html','install.html',
- 'css/styles.css','js/app.js','js/daily.js','js/dsa.js','js/lld.js','js/sd.js','js/ai.js','js/tools.js','js/conc.js',
+ 'css/styles.css','js/app.js','js/daily.js','js/dsa.js','js/lld.js','js/sd.js','js/ai.js','js/tools.js','js/conc.js','js/code.js','js/snippets.js',
  'manifest.webmanifest','icons/icon-192.png','icons/icon-512.png'];
 self.addEventListener('install',e=>{e.waitUntil(caches.open(CACHE).then(c=>c.addAll(ASSETS)).then(()=>self.skipWaiting()));});
 self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(ks=>Promise.all(ks.filter(k=>k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim()));});
