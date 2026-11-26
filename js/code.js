@@ -2,12 +2,14 @@
 (function(){
 const esc=s=>s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 const KW=/\b(def|return|if|else|elif|for|while|in|not|and|or|import|from|class|self|with|as|await|async|try|finally|new|public|private|static|final|void|int|long|var|let|const|function|this|synchronized|extends|implements|interface|throw|true|false|True|False|None|null|lambda|yield|break|continue|go|func|chan|select|defer)\b/g;
+const enc=n=>{let s='';do{s=String.fromCharCode(65+n%26)+s;n=Math.floor(n/26);}while(n>0);return s;};
+const dec=s=>[...s].reduce((a,c)=>a*26+c.charCodeAt(0)-65,0);
 function hl(src){
   const out=[];let t=esc(src);
-  t=t.replace(/(#.*|\/\/.*)$/gm,m=>{out.push('<span class="c">'+m+'</span>');return '\u0000'+(out.length-1)+'\u0000';});
-  t=t.replace(/("[^"\n]*"|'[^'\n]*')/g,m=>{out.push('<span class="s">'+m+'</span>');return '\u0000'+(out.length-1)+'\u0000';});
+  t=t.replace(/(#.*|\/\/.*)$/gm,m=>{out.push('<span class="c">'+m+'</span>');return '\u0001'+enc(out.length-1)+'\u0002';});
+  t=t.replace(/("[^"\n]*"|'[^'\n]*')/g,m=>{out.push('<span class="s">'+m+'</span>');return '\u0001'+enc(out.length-1)+'\u0002';});
   t=t.replace(KW,'<span class="k">$1</span>').replace(/\b(\d+)\b/g,'<span class="n">$1</span>');
-  return t.replace(/\u0000(\d+)\u0000/g,(_,i)=>out[+i]);
+  return t.replace(/\u0001([A-Z]+)\u0002/g,(_,i)=>out[dec(i)]);
 }
 window.DS_CODE=function(el,items){
   let cur=0,lang=null;
