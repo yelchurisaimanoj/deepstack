@@ -24,7 +24,7 @@ $('#concepts').innerHTML=CONC.map((c,i)=>`
 let raceTimer=null;
 function raceRun(locked){
   clearInterval(raceTimer);
-  let a=0,b=0,count=0,lost=0,turn=0;
+  let a=0,b=0,count=0,lost=0;
   $('#fa').style.width='0%';$('#fb').style.width='0%';$('#cnt').textContent='0';
   $('#ha').textContent='';$('#hb').textContent='';
   $('#racecap').innerHTML=locked?'Lock on: threads take turns. Nobody overwrites anybody.':'No lock: both threads read the same value and one update gets lost...';
@@ -34,10 +34,12 @@ function raceRun(locked){
       $('#racecap').innerHTML=locked?`Finished: <b>count = ${count}</b>. Perfect 200, as promised. The lock forced turn-taking - slower, correct.`:`Finished: <b>count = ${count}</b> - expected 200, lost ${lost} updates to interleaving. Multiply this by a bank balance and you see the problem.`;
       DS.mark('conc','race'); return;
     }
-    const who=Math.random()<.5?'a':'b';
-    if(locked){
-      if(who==='a'&&turn===0){a++;count++;turn=1;$('#ha').innerHTML='<span class="lockchip" style="background:#facc15">🔒 holds lock, +1</span>';$('#hb').textContent='waiting...';}
-      else if(who==='b'&&turn===1){b++;count++;turn=0;$('#hb').innerHTML='<span class="lockchip" style="background:#facc15">🔒 holds lock, +1</span>';$('#ha').textContent='waiting...';}
+    let who=Math.random()<.5?'a':'b';
+    if(who==='a'&&a>=100)who='b'; if(who==='b'&&b>=100)who='a';
+    if((who==='a'&&a>=100)||(who==='b'&&b>=100)){/* both done; loop ends next tick */}
+    else if(locked){
+      if(who==='a'){a++;count++;$('#ha').innerHTML='<span class="lockchip" style="background:#facc15">🔒 holds lock, +1</span>';$('#hb').textContent=b>=100?'done ✅':'waiting...';}
+      else{b++;count++;$('#hb').innerHTML='<span class="lockchip" style="background:#facc15">🔒 holds lock, +1</span>';$('#ha').textContent=a>=100?'done ✅':'waiting...';}
     } else {
       const read=count; // both may read the same value before either writes
       if(who==='a'){a++; if(Math.random()<0.06){lost++; count=read; $('#ha').innerHTML='read '+read+', got preempted, wrote stale value 💥';} else {count=read+1;$('#ha').textContent='+1';}
