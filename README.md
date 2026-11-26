@@ -12,6 +12,8 @@ A progressive web app for senior software engineers who want to keep growing but
 | ▣ **LLD & Design Patterns** | SOLID as five tiny stories, live demos (Observer, Strategy, Decorator), the classic pattern deck, spot-the-pattern quiz |
 | ⛁ **System Design** | Tap-to-scale stepper from 100 users to 1 billion, six building blocks, real walkthroughs (WhatsApp message, URL shortener, food delivery) |
 | ✦ **AI & Forward Engineering** | Tokens/embeddings/RAG/agents/evals/guardrails cards, a tokenizer toy, a step-by-step RAG pipeline, the forward-deployed engineer mindset |
+| 🧵 **Concurrency & Async** | Threads vs processes, race-condition demo (run it unlocked, then locked), sync-vs-async timeline, deadlock stepper with the fix, semaphores, producer-consumer, happens-before |
+| 🧵 **Concurrency & Async** | Threads vs processes, race-condition demo (run unlocked, then locked), sync-vs-async timeline, deadlock stepper with the one-rule fix, semaphores, producer-consumer, happens-before |
 | ⚒ **Tools Radar** | The modern toolbox (AI coding, ship & run, watch & debug, team flow), filtered to what matters |
 
 Every track ends with **critical questions** - the ones interviews keep asking, each with a "use it at work" note, because this is for day-to-day engineering, not just interview prep.

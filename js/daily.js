@@ -21,7 +21,10 @@ const PICKS=[
  {k:'ai',i:'🛡',t:'Guardrails are the product',s:'Today: the guardrails card. Probabilistic suggests, deterministic decides. Write that on a sticky note.',p:'ai.html'},
  {k:'dsa',i:'🪆',t:'Cache the subproblem',s:'Today: the DP card. Same question twice = remember it. Half of dynamic programming is that sentence.',p:'dsa.html'},
  {k:'lld',i:'🍱',h:'',t:'Assemble the thali',s:'Today: the Builder card. Twelve-argument constructors are a cry for help; build step by step.',p:'lld.html'},
- {k:'sd',i:'🔗',t:'50 milliseconds to redirect',s:'Today: the URL shortener walkthrough. The CRUD is 5%; analytics and abuse are the real product.',p:'sd.html'}
+ {k:'sd',i:'🔗',t:'50 milliseconds to redirect',s:'Today: the URL shortener walkthrough. The CRUD is 5%; analytics and abuse are the real product.',p:'sd.html'},
+ {k:'conc',i:'🏁',t:'Lose an update on purpose',s:'Today: run the race-condition demo unlocked. Watch count miss 200, then flip the lock and watch it behave.',p:'concurrency.html'},
+ {k:'conc',i:'☠️',t:'Step into a deadlock',s:'Today: the deadlock stepper. Two locks, two threads, one frozen trap - and the one ordering rule that kills it.',p:'concurrency.html'},
+ {k:'conc',i:'⚡',t:'Waiting is free',s:'Today: run sync vs async and compare the clocks. Async does not make tasks faster; it makes waiting useful.',p:'concurrency.html'}
 ];
 const d=new Date();
 const idx=(d.getFullYear()*372+d.getMonth()*31+d.getDate())%PICKS.length;

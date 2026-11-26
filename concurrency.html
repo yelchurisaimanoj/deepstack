@@ -1,0 +1,90 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Concurrency & Async - DeepStack</title>
+<meta name="theme-color" content="#0a0e1a"><link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon-192.png"><link rel="stylesheet" href="css/styles.css">
+<style>:root{--g1:#fb923c;--g2:#f43f5e}
+.lane{background:#0b1122;border:1px solid var(--line);border-radius:10px;padding:8px 10px;margin-bottom:8px;position:relative}
+.lane .who{font-size:11px;font-weight:800;color:var(--dim);letter-spacing:.5px}
+.lane .prog{height:8px;border-radius:99px;background:var(--card2);margin-top:6px;overflow:hidden}
+.lane .fill{height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,var(--g1),var(--g2));transition:width .25s}
+.lane .holds{font-size:12px;margin-top:4px;min-height:16px}
+.lockchip{display:inline-block;font-size:11px;font-weight:800;border-radius:99px;padding:1px 8px;margin-right:4px}
+.shared{font-size:34px;font-weight:900;text-align:center;padding:6px 0}
+</style>
+</head><body>
+<header class="top"><div class="topin">
+  <a class="brand" href="index.html"><span class="logo">◧</span>DeepStack</a><div class="sp"></div>
+  <a class="pillbtn" href="index.html">← All tracks</a>
+</div></header>
+<main class="wrap">
+  <section class="hero"><h1>🧵 Concurrency & <span class="g">Async</span></h1>
+  <p>Threads, locks, races, async - the ideas that separate "it works on my machine" from "it survives production". Watch them break, then watch the fix.</p></section>
+
+  <div class="st"><h2>The core deck</h2><span class="hint">flip each card</span><div class="line"></div></div>
+  <div class="grid" id="concepts"></div>
+
+  <div class="st"><h2>Feel it: the race condition</h2><span class="hint">run it unlocked, then locked</span><div class="line"></div></div>
+  <div class="panel">
+    <h3>🏁 Two threads, one counter</h3>
+    <div class="sub">Each thread adds 100 to a shared counter. The right answer is 200. Watch what happens without a lock - then flip the lock on and run it again.</div>
+    <div class="stage">
+      <div class="lane"><span class="who">THREAD A</span><div class="prog"><div class="fill" id="fa"></div></div><div class="holds" id="ha"></div></div>
+      <div class="lane"><span class="who">THREAD B</span><div class="prog"><div class="fill" id="fb"></div></div><div class="holds" id="hb"></div></div>
+      <div class="shared">count = <span id="cnt">0</span></div>
+    </div>
+    <div class="caption" id="racecap">Pick a mode and run. The counter should reach 200.</div>
+    <div class="ctr">
+      <button class="btn" id="runbad">▶ Run without lock</button>
+      <button class="btn ghost" id="rungood">🔒 Run with lock</button>
+    </div>
+  </div>
+
+  <div class="st"><h2>Feel it: sync vs async</h2><span class="hint">same three tasks, two worlds</span><div class="line"></div></div>
+  <div class="panel">
+    <h3>⏳ One thread, three tasks</h3>
+    <div class="sub">Download, cook, reply. Sync does them one at a time and blocks. Async starts the slow ones, does other work while waiting, finishes sooner. Same thread, same work.</div>
+    <div class="stage">
+      <div class="lane"><span class="who">📥 DOWNLOAD (slow I/O)</span><div class="prog"><div class="fill" id="t1"></div></div></div>
+      <div class="lane"><span class="who">🍳 COOK PASTA (slow wait)</span><div class="prog"><div class="fill" id="t2"></div></div></div>
+      <div class="lane"><span class="who">💬 REPLY TO MOM (quick)</span><div class="prog"><div class="fill" id="t3"></div></div></div>
+      <div class="tokout" style="margin-top:6px;font-size:13px;color:var(--dim)" id="timecap">Timeline: <b id="clock" style="color:var(--ink)">0s</b></div>
+    </div>
+    <div class="caption" id="synccap">Sync: everything queues behind the download. Async: waiting time becomes working time.</div>
+    <div class="ctr">
+      <button class="btn" id="runsync">▶ Run sync (blocking)</button>
+      <button class="btn ghost" id="runasync">⚡ Run async</button>
+    </div>
+  </div>
+
+  <div class="st"><h2>Feel it: the deadlock</h2><span class="hint">step into the trap, then step out</span><div class="line"></div></div>
+  <div class="panel">
+    <h3>☠️ Two locks, two threads, one trap</h3>
+    <div class="sub">Thread A grabs lock 1 then wants lock 2. Thread B grabs lock 2 then wants lock 1. Step through and watch them freeze - then see the one-rule fix.</div>
+    <div class="stage">
+      <div class="lane"><span class="who">THREAD A</span><div class="holds" id="dla">holds: nothing</div></div>
+      <div class="lane"><span class="who">THREAD B</span><div class="holds" id="dlb">holds: nothing</div></div>
+      <div class="tokout" style="text-align:center;margin-top:6px">
+        <span class="lockchip" id="lk1" style="background:#34d399">🔓 Lock 1 free</span>
+        <span class="lockchip" id="lk2" style="background:#22d3ee">🔓 Lock 2 free</span>
+      </div>
+    </div>
+    <div class="caption" id="dlcap">Press step. Watch who holds what.</div>
+    <div class="ctr">
+      <button class="btn" id="dlstep">Next step →</button>
+      <button class="btn ghost" id="dlfix">🛠 The fix: same lock order</button>
+      <button class="btn ghost" id="dlreset">↺ Reset</button>
+    </div>
+  </div>
+
+  <div class="st"><h2>Quick check</h2><span class="hint">five questions</span><div class="line"></div></div>
+  <div class="panel"><div id="quiz"></div></div>
+
+  <div class="st"><h2>Critical questions</h2><span class="hint">asked in interviews, useful at work</span><div class="line"></div></div>
+  <div id="faqs"></div>
+
+  <div class="footer">DeepStack · Concurrency track · progress saves on this device</div>
+</main>
+<script src="js/app.js"></script>
+<script src="js/conc.js"></script>
+</body></html>
